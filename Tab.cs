@@ -5,7 +5,7 @@ public class Tab : MonoBehaviour
 {
     public Image[] tabsImages;
     public GameObject[] pages;
-    void Start()
+    void OnEnable()
     {
         OpenTab(0);
     }
