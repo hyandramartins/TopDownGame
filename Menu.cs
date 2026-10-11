@@ -15,4 +15,9 @@ public class Menu : MonoBehaviour
             menu.SetActive(!menu.activeSelf);
         }
     }
+
+    public void CloseMenu()
+    {
+        menu.SetActive(false);
+    }
 }
