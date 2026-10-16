@@ -5,10 +5,14 @@ public class Save : MonoBehaviour
 {
     private string saveFilePath;
 
+    private Inventory inventory;
+
     void Start()
     {
         saveFilePath = Path.Combine(Application.persistentDataPath, "saveData.json");
 
+        inventory = FindAnyObjectByType<Inventory>();
+        
         LoadGame();
     }
 
@@ -18,6 +22,7 @@ public class Save : MonoBehaviour
 
         saveData.positionPlayer = GameObject.FindWithTag("Player").transform.position;
         saveData.EdgesMap = FindAnyObjectByType<CinemachineConfiner>().m_BoundingShape2D.gameObject.name;
+        saveData.saveDataInventory = inventory.GetInventoryItems();
 
         File.WriteAllText(saveFilePath, JsonUtility.ToJson(saveData));
     }
@@ -29,6 +34,8 @@ public class Save : MonoBehaviour
             SaveData saveData = JsonUtility.FromJson<SaveData>(File.ReadAllText(saveFilePath));
             GameObject.FindWithTag("Player").transform.position = saveData.positionPlayer;
             FindAnyObjectByType<CinemachineConfiner>().m_BoundingShape2D = GameObject.Find(saveData.EdgesMap).GetComponent<PolygonCollider2D>();
+
+            inventory.SetInventoryItems(saveData.saveDataInventory);
         }
         else
         {
