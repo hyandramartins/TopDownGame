@@ -18,8 +18,8 @@ public class MovePlayer : MonoBehaviour
 
     void FixedUpdate()
     {   
-        Debug.Log("Velocidade: " + rigidbodyPlayer.linearVelocity);
-        Debug.Log("Input: " + moveInput);
+        //Debug.Log("Velocidade: " + rigidbodyPlayer.linearVelocity);
+        //Debug.Log("Input: " + moveInput);
         rigidbodyPlayer.linearVelocity = speed * moveInput;
     }
 
