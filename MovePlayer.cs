@@ -35,7 +35,7 @@ public class MovePlayer : MonoBehaviour
         }
 
         moveInput = context.ReadValue<Vector2>();
-        Debug.Log(moveInput);
+        //Debug.Log(moveInput);
         animatorPlayer.SetFloat("InputX", moveInput.x);
         animatorPlayer.SetFloat("InputY", moveInput.y);
         //moveInput = context.ReadValue<Vector2>().normalized; 
