@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class InventoryController : MonoBehaviour
 {
     private ItemDictionary itemDictionary;
 

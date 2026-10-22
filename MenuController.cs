@@ -1,6 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-public class Menu : MonoBehaviour
+public class MenuController : MonoBehaviour
 {   
     public GameObject menu;
     void Start()

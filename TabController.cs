@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Tab : MonoBehaviour
+public class TabController : MonoBehaviour
 {
     public Image[] tabsImages;
     public GameObject[] pages;

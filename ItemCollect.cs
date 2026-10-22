@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class ItemCollect : MonoBehaviour
 {   
-    private Inventory inventory;
+    private InventoryController inventory;
     void Start()
     {
-        inventory = FindAnyObjectByType<Inventory>();
+        inventory = FindAnyObjectByType<InventoryController>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

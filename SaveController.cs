@@ -1,17 +1,17 @@
 using UnityEngine;
 using System.IO;
 using Cinemachine;
-public class Save : MonoBehaviour
+public class SaveController : MonoBehaviour
 {
     private string saveFilePath;
 
-    private Inventory inventory;
+    private InventoryController inventory;
 
     void Start()
     {
         saveFilePath = Path.Combine(Application.persistentDataPath, "saveData.json");
 
-        inventory = FindAnyObjectByType<Inventory>();
+        inventory = FindAnyObjectByType<InventoryController>();
         
         LoadGame();
     }

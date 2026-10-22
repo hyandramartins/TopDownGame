@@ -4,9 +4,9 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 
-public class ItemPopupControll : MonoBehaviour
+public class ItemPopupController : MonoBehaviour
 {
-    public static ItemPopupControll Instance { get; private set; }
+    public static ItemPopupController Instance { get; private set; }
     public GameObject prefabBoxItemPopup;
     public int maxPopups;
     public float durationPopup;

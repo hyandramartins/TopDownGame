@@ -9,9 +9,9 @@ public class Item : MonoBehaviour
     public virtual void PickUp()
     {
         Sprite ItemImage = GetComponent<Image>().sprite;
-        if (ItemPopupControll.Instance != null)
+        if (ItemPopupController.Instance != null)
         {
-            ItemPopupControll.Instance.ShowItemPickup(Name, ItemImage);
+            ItemPopupController.Instance.ShowItemPickup(Name, ItemImage);
         }
     }
 }
