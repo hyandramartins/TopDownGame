@@ -7,4 +7,5 @@ public class SaveData
     public Vector3 positionPlayer;
     public string EdgesMap;
     public List<SaveDataInventory> saveDataInventory;
+    public List<SaveDataInventory> saveDataHotbar;
 }
