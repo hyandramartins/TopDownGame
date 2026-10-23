@@ -14,4 +14,9 @@ public class Item : MonoBehaviour
             ItemPopupController.Instance.ShowItemPickup(Name, ItemImage);
         }
     }
+
+    public virtual void UseItem()
+    {
+        Debug.Log("Using item " + Name);
+    }
 }
