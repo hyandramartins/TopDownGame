@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Callbacks;
 using UnityEditor.Rendering.LookDev;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -18,14 +19,21 @@ public class MovePlayer : MonoBehaviour
 
     void FixedUpdate()
     {   
+        if(PauseController.IsGamePaused)
+        {
+            rigidbodyPlayer.linearVelocity = Vector2.zero;
+            animatorPlayer.SetBool("isWalking", false);
+            return;
+        }
         //Debug.Log("Velocidade: " + rigidbodyPlayer.linearVelocity);
         //Debug.Log("Input: " + moveInput);
         rigidbodyPlayer.linearVelocity = speed * moveInput;
+        animatorPlayer.SetBool("isWalking", rigidbodyPlayer.linearVelocity.magnitude >0);
     }
 
     public void Move (InputAction.CallbackContext context)
     {   
-        animatorPlayer.SetBool("isWalking", true);
+        //animatorPlayer.SetBool("isWalking", true);
 
         if (context.canceled)
         {
