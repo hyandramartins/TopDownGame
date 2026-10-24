@@ -46,7 +46,6 @@ public class NPC : MonoBehaviour, InteractableInterface
         dialoguePanel.SetActive(true);
         PauseController.SetPause(true);
 
-        //TypeLine
         StartCoroutine(TypeLine());
     }
 
