@@ -42,7 +42,7 @@ public class Item : MonoBehaviour
 
     public void UpdateQuantityDisplay()
     {
-        if(amountText != null)
+        if (amountText != null)
         {
             amountText.text = amount > 1 ? amount.ToString() : "";
         }
@@ -56,7 +56,6 @@ public class Item : MonoBehaviour
             ItemPopupController.Instance.ShowItemPickup(Name, ItemImage);
         }
     }
-
     public virtual void UseItem()
     {
         Debug.Log("Using item " + Name);
