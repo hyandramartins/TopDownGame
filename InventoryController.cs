@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
+    public static InventoryController Instance { get; private set; }
     private ItemDictionary itemDictionary;
 
     public GameObject inventoryPage;
@@ -11,6 +13,16 @@ public class InventoryController : MonoBehaviour
     public int slotAmount;
 
     public GameObject[] itemsPrefabs;
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
     void Start()
     {
 
@@ -28,8 +40,26 @@ public class InventoryController : MonoBehaviour
         // }
     }
 
-    public bool AddItem (GameObject itemPrefab)
-    {   
+    public bool AddItem(GameObject itemPrefab)
+    {
+        Item itemAdd = itemPrefab.GetComponent<Item>();
+        if (itemAdd == null) return false;
+
+        foreach (Transform child in inventoryPage.transform)
+        {
+            Slot slot = child.GetComponent<Slot>();
+            if (slot != null && slot.currentItem != null)
+            {
+                Item slotItem = slot.currentItem.GetComponent<Item>();
+                if (slotItem != null && slotItem.ID == itemAdd.ID)
+                {
+                    //Same item, stack them
+                    slotItem.AddToStack();
+                    return true;
+                }
+            }
+        }
+
         foreach (Transform child in inventoryPage.transform)
         {
             Slot slot = child.GetComponent<Slot>();
@@ -58,6 +88,7 @@ public class InventoryController : MonoBehaviour
                 SaveDataInventory data = new SaveDataInventory();
                 data.itemID = item.ID;
                 data.slotIndex = child.GetSiblingIndex();
+                data.amount = item.amount;
                 dataInventory.Add(data);
             }
         }
@@ -85,6 +116,14 @@ public class InventoryController : MonoBehaviour
                 {
                     GameObject item = Instantiate(itemPrefab, slot.transform);
                     item.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+
+                    Item itemComponent = item.GetComponent<Item>();
+                    if (itemComponent != null && data.amount > 1)
+                    {
+                        itemComponent.amount = data.amount;
+                        itemComponent.UpdateQuantityDisplay();
+                    }
+
                     slot.currentItem = item;
                 }
             }
